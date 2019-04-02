@@ -19,6 +19,6 @@ class Piece
 		end
 	end	
 	
-	def valid_move
+	def valid_move?
 	end
 end

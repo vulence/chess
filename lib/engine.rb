@@ -21,7 +21,7 @@ class Engine
 			current_pos = move[0..1]
 			next_pos = move[3..4]
 		
-			if (@b.hash["#{current_pos}"].valid_move?(next_pos, @b.hash["#{next_pos}"]))
+			if (@b.hash["#{current_pos}"].valid_move?(@b.hash, next_pos))
 				@b.hash["#{next_pos}"] = @b.hash["#{current_pos}"]
 				@b.hash["#{current_pos}"] = nil
 				b = !b
