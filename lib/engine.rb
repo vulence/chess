@@ -12,12 +12,15 @@ class Engine
 			if (b)
 				puts "White turn: "
 				move = gets.chomp.downcase
-				#b = !b
 			else
 				puts "Red turn: "
 				move = gets.chomp.downcase
-				#b = !b
 			end
+			
+			if (!input_check(move, b))
+				next
+			end
+			
 			current_pos = move[0..1]
 			next_pos = move[3..4]
 		
@@ -32,7 +35,25 @@ class Engine
 
 			@b.draw_board
 		end
-	end	
+	end
+	
+	def input_check(move, b)
+		if (move.length != 5 || move =~ /[^1-8a-h\s]/)
+			puts "Invalid input"
+			return false
+		elsif (@b.hash["#{move[0..1]}"] == nil)
+			puts "You have selected a field with no playable figure"
+			return false
+		elsif (b && @b.hash["#{move[0..1]}"].color != "white")
+			puts "It's other player's turn"
+			return false
+		elsif (!b && @b.hash["#{move[0..1]}"].color != "red")
+			puts "It's other player's turn"
+			return false
+		end
+		
+		return true
+	end
 end
 
 Engine.new
