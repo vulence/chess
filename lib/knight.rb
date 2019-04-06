@@ -8,9 +8,9 @@ class Knight < Piece
 	
 	def color?
 		if (@color == "white")
-			@value = "K".white
+			@value = "k".white
 		else
-			@value = "K".red
+			@value = "k".red
 		end
 	end
 	

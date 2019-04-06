@@ -80,6 +80,7 @@ class Board
 			end
 			
 			print "|"
+			print "  #{i}"
 			puts
 		end
 		
