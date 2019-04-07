@@ -20,6 +20,10 @@ class Engine
 		puts "If you wish to save at any moment, input 'save'"
 		puts "Do you wish to load a saved game? (y/n)"
 		choice = gets.chomp.downcase
+		while (choice != "y" && choice != "n")
+			print "Invalid input (y/n)"
+			choice = gets.chomp.downcase
+		end
 		
 		choice == "y" ? load_game : return
 	end
@@ -49,6 +53,7 @@ class Engine
 				@b.hash["#{next_pos}"] = @b.hash["#{current_pos}"]
 				@b.hash["#{current_pos}"] = nil
 				@turn = !@turn
+				promote_check(next_pos)
 				
 				check?("white") if @turn
 				check?("black") if !@turn
@@ -57,6 +62,12 @@ class Engine
 				sleep(1)
 				next
 			end
+		end
+	end
+	
+	def promote_check(next_pos)
+		if (@b.hash["#{next_pos}"].class.to_s == "Pawn")
+			@b.hash["#{next_pos}"].promote(@b.hash)
 		end
 	end
 	
