@@ -66,7 +66,7 @@ class Pawn < Piece
 	def en_passant_taking?(hash, next_position)
 		next_position_column = next_position[0]
 		next_position_row = next_position[1].to_i
-		
+
 		if (self.color == "white")
 			if (next_position_row == @position[1].to_i + 1 && next_position_column.ord == @position[0].ord + 1)
 				right = hash["#{next_position_column}" + "#{@position[1].to_i}"]
@@ -84,20 +84,20 @@ class Pawn < Piece
 		else
 			if (next_position_row == @position[1].to_i - 1 && next_position_column.ord == @position[0].ord + 1)
 				right = hash["#{next_position_column}" + "#{position[1].to_i}"]
-				if (right != nil && right.value == "P".white && right.passant = true)
+				if (right != nil && right.value == "P".white && right.passant == true)
 					hash["#{next_position_column}" + "#{@position[1].to_i}"] = nil
 					return true
 				end
 			elsif (next_position_row == @position[1].to_i - 1 && next_position_column.ord == @position[0].ord - 1)
 				left = hash["#{next_position_column}" + "#{@position[1].to_i}"]
-				if (left != nil && left.value == "P".white && left.passant = true)
+				if (left != nil && left.value == "P".white && left.passant == true)
 					hash["#{next_position_column}" + "#{@position[1].to_i}"] = nil
 					return true
 				end
 			end
+		end
 		
 		return false
-		end
 	end
 	
 	def taking?(hash, next_position)

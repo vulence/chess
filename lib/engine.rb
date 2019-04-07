@@ -33,9 +33,11 @@ class Engine
 			@b.draw_board
 			
 			if (@turn)
+				clear_passant_white
 				puts "White turn: "
 				move = gets.chomp.downcase
 			else
+				clear_passant_black
 				puts "Red turn: "
 				move = gets.chomp.downcase
 			end
@@ -61,6 +63,22 @@ class Engine
 				puts "Invalid move"
 				sleep(1)
 				next
+			end
+		end
+	end
+	
+	def clear_passant_white
+		@b.hash.each_value do |val|
+			if (val.class.to_s == "Pawn" && val.color == "white")
+				val.passant = false
+			end
+		end
+	end
+	
+	def clear_passant_black
+		@b.hash.each_value do |val|
+			if (val.class.to_s == "Pawn" && val.color != "white")
+					val.passant = false
 			end
 		end
 	end
